@@ -15,7 +15,7 @@ public class ApiTest {
 
     @Test
     public void test_BeanFactory() {
-        // 1. 初始化 BeanFactory
+        // 1. 初始化 BeanFactory（依次往上调用父类空参构造器）
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
 
         // 2. 注册 BeanDefinition

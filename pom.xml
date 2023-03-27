@@ -2,15 +2,31 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>demo4-spring-boot-aop</artifactId>
-        <groupId>spring.boot</groupId>
-        <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../demo4-spring-boot-aop/pom.xml</relativePath>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>spring.boot</groupId>
     <artifactId>easy-spring</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>easy-spring</name>
+    <description>easy Spring</description>
 
+    <packaging>war</packaging>
+
+    <properties>
+        <spring.version>4.1.7.RELEASE</spring.version>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jdk.version>8</jdk.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
 </project>

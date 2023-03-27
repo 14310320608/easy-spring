@@ -1,6 +1,7 @@
 package springframework.beans;
 
-import org.springframework.core.NestedRuntimeException;
+
+import springframework.beans.factory.NestedRuntimeException;
 
 /**
  * bean 包的总异常，
