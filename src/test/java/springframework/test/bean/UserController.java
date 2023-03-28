@@ -9,14 +9,18 @@ public class UserController {
 
     private String name;
 
-    public UserController() {}
+    private UserService userService;
 
     public UserController(String name) {
         this.name = name;
     }
 
     public void login() {
-        System.out.println("开始登录...");
+        userService.login();
+    }
+
+    public void register() {
+        userService.register(name);
     }
 
 
@@ -26,5 +30,13 @@ public class UserController {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public UserService getUserService() {
+        return userService;
+    }
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 }

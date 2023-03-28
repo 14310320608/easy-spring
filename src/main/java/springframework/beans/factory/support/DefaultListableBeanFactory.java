@@ -13,8 +13,15 @@ import java.util.Map;
  */
 public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements BeanDefinitionRegistry{
 
+    // 缓存 Bean 对象唯一 id 和 BeanDefinition 对象的容器
     private Map<String, BeanDefinition> beanDefinitionMap = new HashMap<>();
 
+    /**
+     * 获取 BeanDefinition 对象
+     * @param beanName Bean 对象唯一 id
+     * @return 返回 BeanDefinition 对象
+     * @throws BeansException 获取不到 BeanDefinition 对象
+     */
     @Override
     protected BeanDefinition getBeanDefinition(String beanName) throws BeansException {
         BeanDefinition beanDefinition = beanDefinitionMap.get(beanName);
@@ -24,6 +31,11 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
         return beanDefinition;
     }
 
+    /**
+     * 注册 BeanDefinition 对象
+     * @param beanName Bean 对象唯一 id
+     * @param beanDefinition BeanDefinition 对象
+     */
     @Override
     public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition) {
         beanDefinitionMap.put(beanName, beanDefinition);

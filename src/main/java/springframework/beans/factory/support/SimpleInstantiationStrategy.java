@@ -13,6 +13,15 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class SimpleInstantiationStrategy implements InstantiationStrategy {
 
+    /**
+     * 通过 Cglib 代理实例化 Bean 对象
+     * @param beanName Bean 对象唯一 id
+     * @param beanDefinition 解耦封装 Bean 对象
+     * @param ctor Bean 对象构造器
+     * @param args Bean 对象参数
+     * @return 实例化 Bean 对象
+     * @throws BeansException 实例化 Bean 对象异常
+     */
     @Override
     public Object instantiate(String beanName, BeanDefinition beanDefinition, Constructor ctor, Object[] args) throws BeansException {
         Object bean = null;

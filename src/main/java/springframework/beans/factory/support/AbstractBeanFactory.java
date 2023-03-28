@@ -13,6 +13,12 @@ import java.beans.Beans;
  */
 public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {
 
+    /**
+     * 获取无参 Bean 对象
+     * @param beanName Bean 对象唯一 id
+     * @return 返回创建好的 Bean 对象
+     * @throws BeansException 创建 Bean 对象失败
+     */
     @Override
     public Object getBean(String beanName) throws BeansException {
         Object bean = getSingletonBean(beanName);
@@ -25,6 +31,13 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
         return createBean(beanName, beanDefinition, null);
     }
 
+    /**
+     * 获取有参 Bean 对象
+     * @param beanName Bean 对象唯一 id
+     * @param args Bean 对象参数
+     * @return 返回创建好的有参 Bean 对象
+     * @throws BeansException 创建 Bean 对象失败
+     */
     @Override
     public Object getBean(String beanName, Object... args) throws BeansException {
         Object bean = getSingletonBean(beanName);
