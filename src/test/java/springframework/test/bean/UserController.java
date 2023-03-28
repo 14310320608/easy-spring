@@ -7,7 +7,24 @@ package springframework.test.bean;
  */
 public class UserController {
 
-    public void login () {
-        System.out.println("开始注册...");
+    private String name;
+
+    public UserController() {}
+
+    public UserController(String name) {
+        this.name = name;
+    }
+
+    public void login() {
+        System.out.println("开始登录...");
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
