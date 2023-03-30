@@ -36,6 +36,7 @@ public class CglibSubclassingInstantiationStrategy implements InstantiationStrat
 
         enhancer.setCallback(NoOp.INSTANCE);
 
+        // 创建的是代理类，代理类继承父类同时不去重写父类对应方法，调用方法时直接调用父类的方法
         if (null == ctor) {
             return enhancer.create();
         }

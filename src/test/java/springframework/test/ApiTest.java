@@ -1,5 +1,6 @@
 package springframework.test;
 
+import net.sf.cglib.core.DebuggingClassWriter;
 import org.junit.Test;
 
 import springframework.beans.PropertyValue;
@@ -19,11 +20,15 @@ import springframework.test.bean.UserService;
 public class ApiTest {
 
     @Test
-    public void test_BeanFactory() {
+    public void test() {
+        // 让 Cglib 代理对象的class文件写入到磁盘（必须是标准的 main 方法才行）
+//        System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "/Users/gusixue/Desktop");
+
+
         // 1. 初始化 BeanFactory（依次往上调用父类空参构造器）
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
 
-        // 2. 注册 BeanDefinition
+        // 2. 设置属性与注册 BeanDefinition
         PropertyValues propertyValues2 = new PropertyValues();
         propertyValues2.getPropertyValues().add(new PropertyValue("userService",
                 new BeanReference("userService")));
