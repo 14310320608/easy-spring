@@ -1,0 +1,12 @@
+<beans>
+    <bean id="userController" name="userControllerName" class="springframework.test.bean.UserController">
+        <property name="userService" ref="userService"/>
+    </bean>
+
+    <bean name="userService" class="springframework.test.bean.UserService">
+        <property name="age" value="26"/>
+        <property name="myUserDao" ref="userDao"/>
+    </bean>
+
+    <bean id="userDao" class="springframework.test.bean.UserDao"/>
+</beans>

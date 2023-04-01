@@ -28,6 +28,10 @@ public class PropertyValues {
         this.propertyValues = propertyValues;
     }
 
+    public void addPropertyValue(PropertyValue propertyValue) {
+        this.propertyValues.add(propertyValue);
+    }
+
     @Override
     public String toString() {
         return "PropertyValues{" +
