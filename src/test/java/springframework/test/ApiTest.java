@@ -72,7 +72,7 @@ public class ApiTest {
         resourceLoader("classpath:Spring.xml");
         System.out.println();
 
-        System.out.println("file");
+        System.out.println("File");
         resourceLoader("src/test/resources/Spring.xml");
         System.out.println();
 
@@ -86,8 +86,8 @@ public class ApiTest {
     }
 
     private void resourceLoader(String location) throws IOException {
-        Resource resource1 = resourceLoader.getResource(location);
-        InputStream inputStream = resource1.getInputStream();
+        Resource resource = resourceLoader.getResource(location);
+        InputStream inputStream = resource.getInputStream();
         String content = IoUtil.readUtf8(inputStream);
         System.out.println(content);
     }
@@ -99,7 +99,10 @@ public class ApiTest {
 
         // 解析 xml，设置参数、注册 BeanDefinition
         XmlBeanDefinitionReader xmlBeanDefinitionReader = new XmlBeanDefinitionReader(beanFactory, resourceLoader);
-        xmlBeanDefinitionReader.loadBeanDefinitions("/Spring.xml");
+//        xmlBeanDefinitionReader.loadBeanDefinitions("/Spring.xml");
+        xmlBeanDefinitionReader.loadBeanDefinitions(resourceLoader.getResource("src/test/resources/Spring.xml"));
+//        xmlBeanDefinitionReader.loadBeanDefinitions(resourceLoader.getResource("/Users/gusixue/development/my_workspace/spring-boot/easy-spring/src/test/resources/Spring.xml")
+//                , resourceLoader.getResource("https://raw.githubusercontent.com/g1351612073/easy-spring/master/src/test/resources/Spring.xml"));
 
         // 通过 Bean 工厂创建对象
         doBeanSolution(beanFactory);

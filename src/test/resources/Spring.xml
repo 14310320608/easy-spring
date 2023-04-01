@@ -1,5 +1,5 @@
 <beans>
-    <bean id="userController" name="userControllerName" class="springframework.test.bean.UserController">
+    <bean id="userController" class="springframework.test.bean.UserController">
         <property name="userService" ref="userService"/>
     </bean>
 
@@ -8,5 +8,5 @@
         <property name="myUserDao" ref="userDao"/>
     </bean>
 
-    <bean id="userDao" class="springframework.test.bean.UserDao"/>
+    <bean id="userDao" name="userDaoName"  class="springframework.test.bean.UserDao"/>
 </beans>

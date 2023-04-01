@@ -93,7 +93,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
             for (int j = 0; j < bean.getChildNodes().getLength(); j++) {
                 // 子标签开头必须是 property 标签
                 if (!(bean.getChildNodes().item(j) instanceof Element)
-                        || !"property".equals(bean.getChildNodes().item(i).getNodeName())) {
+                        || !"property".equals(bean.getChildNodes().item(j).getNodeName())) {
                     continue;
                 }
                 Element property = (Element) bean.getChildNodes().item(j);
