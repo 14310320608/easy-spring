@@ -37,8 +37,7 @@ public class SimpleInstantiationStrategy implements InstantiationStrategy {
 
             }
         } catch (IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
-            e.printStackTrace();
-            throw new BeansException("Failed to instantiate [" + clazz.getName() + "]");
+            throw new BeansException("Failed to instantiate [" + clazz.getName() + "]", e);
         }
 
         return bean;

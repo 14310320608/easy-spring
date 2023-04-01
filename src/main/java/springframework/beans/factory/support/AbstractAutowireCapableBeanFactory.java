@@ -41,8 +41,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
             applyPropertyValues(beanName, bean, beanDefinition);
         } catch (Exception e) {
-            e.printStackTrace();
-            throw new BeansException("Instantiation of bean failed");
+            throw new BeansException("Instantiation of bean failed", e);
         }
 
         addSingleBean(beanName, bean);
