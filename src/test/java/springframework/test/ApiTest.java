@@ -76,12 +76,12 @@ public class ApiTest {
         resourceLoader("src/test/resources/Spring.xml");
         System.out.println();
 
-        System.out.println("file");
+        System.out.println("File");
         resourceLoader("/Users/gusixue/development/my_workspace/spring-boot/easy-spring/src/test/resources/Spring.xml");
         System.out.println();
 
-        System.out.println("classpath:Spring.xml");
-        resourceLoader("Spring.xml");
+        System.out.println("URL");
+        resourceLoader("https://raw.githubusercontent.com/g1351612073/easy-spring/master/src/test/resources/Spring.xml");
         System.out.println();
     }
 
