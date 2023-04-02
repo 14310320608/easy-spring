@@ -66,6 +66,9 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
     }
 
 
+    /**
+     * 解析 xml 并设置参数，注册 Bean
+     */
     private void doLoadBeanDefinitions(InputStream inputStream) throws ClassNotFoundException {
         Document doc = XmlUtil.readXML(inputStream);
         Element root = doc.getDocumentElement();
@@ -106,6 +109,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
                 beanDefinition.getPropertyValues().addPropertyValue(propertyValue);
             }
 
+            // XML 配置有问题，快速失败
             if (getRegistry().containsBeanDefinition(beanName)) {
                 throw new BeansException("Duplicate beanName[" + beanName + "] is not allowed");
             }

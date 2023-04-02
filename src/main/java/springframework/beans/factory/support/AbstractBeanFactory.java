@@ -15,6 +15,7 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 
     /**
      * 获取无参 Bean 对象
+     * 初始化时：实例化 Bean 对象，Bean 对象属性填充（依赖注入）
      * @param beanName Bean 对象唯一 id
      * @return 返回创建好的 Bean 对象
      * @throws BeansException 创建 Bean 对象失败
@@ -33,6 +34,7 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 
     /**
      * 获取有参 Bean 对象
+     * 初始化时：实例化 Bean 对象，Bean 对象属性填充（依赖注入）
      * @param beanName Bean 对象唯一 id
      * @param args Bean 对象参数
      * @return 返回创建好的有参 Bean 对象
@@ -46,6 +48,7 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
         }
 
         BeanDefinition beanDefinition = getBeanDefinition(beanName);
+
         return createBean(beanName, beanDefinition, args);
     }
 

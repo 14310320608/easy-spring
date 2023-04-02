@@ -25,7 +25,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     InstantiationStrategy instantiationStrategy = new CglibSubclassingInstantiationStrategy();
 
     /**
-     * 创建 Bean 对象并进行依赖注入
+     * 实例化 Bean 对象，Bean 对象属性填充（依赖注入）
      * @param beanName Bean 对象唯一 id
      * @param beanDefinition 解耦封装 Bean 对象
      * @param args Bean 对象参数
@@ -37,8 +37,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         Object bean = null;
 
         try {
+            // 实例化 Bean 对象
             bean = createBeanInstance(beanName, beanDefinition, args);
 
+            // Bean 对象属性填充（依赖注入）
             applyPropertyValues(beanName, bean, beanDefinition);
         } catch (Exception e) {
             throw new BeansException("Instantiation of bean failed", e);
@@ -77,7 +79,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     }
 
     /**
-     * Bean 对象进行依赖注入
+     * Bean 对象属性填充（依赖注入）
      * @param beanName Bean 对象唯一 id
      * @param bean 创建好的 Bean 对象
      * @param beanDefinition 解耦封装 Bean 对象

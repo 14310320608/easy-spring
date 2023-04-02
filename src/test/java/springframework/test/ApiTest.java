@@ -97,20 +97,21 @@ public class ApiTest {
         // 初始化 BeanFactory
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
 
-        // 解析 xml，设置参数、注册 BeanDefinition
+        // 解析 xml 并设置参数，注册 Bean
         XmlBeanDefinitionReader xmlBeanDefinitionReader = new XmlBeanDefinitionReader(beanFactory, resourceLoader);
 //        xmlBeanDefinitionReader.loadBeanDefinitions("/Spring.xml");
         xmlBeanDefinitionReader.loadBeanDefinitions(resourceLoader.getResource("src/test/resources/Spring.xml"));
 //        xmlBeanDefinitionReader.loadBeanDefinitions(resourceLoader.getResource("/Users/gusixue/development/my_workspace/spring-boot/easy-spring/src/test/resources/Spring.xml")
 //                , resourceLoader.getResource("https://raw.githubusercontent.com/g1351612073/easy-spring/master/src/test/resources/Spring.xml"));
 
-        // 通过 Bean 工厂创建对象
+        // 通过 Bean 工厂创建对象（实例化 Bean 对象，Bean 对象属性填充（依赖注入））
         doBeanSolution(beanFactory);
     }
 
 
     /**
      * 通过 Bean 工厂创建对象
+     * 实例化 Bean 对象，Bean 对象属性填充（依赖注入）
      */
     private void doBeanSolution(DefaultListableBeanFactory beanFactory) {
         // 第一次获取带参数单例 Bean 对象
