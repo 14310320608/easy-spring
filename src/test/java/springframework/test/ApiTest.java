@@ -97,7 +97,7 @@ public class ApiTest {
         // 初始化 BeanFactory
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
 
-        // 解析 xml 并设置参数，注册 Bean
+        // 解析 xml 并设置参数，注册 BeanDefinition
         XmlBeanDefinitionReader xmlBeanDefinitionReader = new XmlBeanDefinitionReader(beanFactory, resourceLoader);
 //        xmlBeanDefinitionReader.loadBeanDefinitions("/Spring.xml");
         xmlBeanDefinitionReader.loadBeanDefinitions(resourceLoader.getResource("src/test/resources/Spring.xml"));

@@ -1,5 +1,6 @@
 package springframework.beans.factory.config;
 
+import springframework.beans.BeansException;
 import springframework.beans.factory.BeanFactory;
 
 /**
@@ -8,5 +9,17 @@ import springframework.beans.factory.BeanFactory;
  * @date 2023/4/1
  */
 public interface AutowireCapableBeanFactory extends BeanFactory {
+
+
+    /**
+     * 执行 BeanPostProcessors 接口实现类的 postProcessBeforeInitialization 方法
+     */
+    Object applyBeanPostProcessorsBeforeInitialization(Object existingBean, String beanName) throws BeansException;
+
+    /**
+     * 执行 BeanPostProcessors 接口实现类的 postProcessAfterInitialization 方法
+     */
+    Object applyBeanPostProcessorsAfterInitialization(Object existingBean, String beanName) throws BeansException;
+
 
 }

@@ -16,4 +16,9 @@ public interface ConfigurableListableBeanFactory
      */
     BeanDefinition getBeanDefinition(String beanName) throws BeansException;
 
+    /**
+     * 所有非懒加载的单例类都去初始化
+     */
+    void preInstantiateSingletons() throws BeansException;
+
 }

@@ -67,7 +67,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 
     /**
-     * 解析 xml 并设置参数，注册 Bean
+     * 解析 xml 并设置参数，注册 BeanDefinition
      */
     private void doLoadBeanDefinitions(InputStream inputStream) throws ClassNotFoundException {
         Document doc = XmlUtil.readXML(inputStream);
