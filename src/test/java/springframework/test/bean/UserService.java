@@ -11,12 +11,14 @@ public class UserService {
 
     private int age;
 
+    private int sex;
+
     public void login() {
         myUserDao.login();
     }
 
     public void register(String name) {
-        myUserDao.register(name, age);
+        myUserDao.register(name, age, sex);
     }
 
     public UserDao getMyUserDao() {

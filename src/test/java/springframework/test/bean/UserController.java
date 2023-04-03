@@ -11,6 +11,10 @@ public class UserController {
 
     private UserService userService;
 
+    public UserController() {
+
+    }
+
     public UserController(String name) {
         this.name = name;
     }

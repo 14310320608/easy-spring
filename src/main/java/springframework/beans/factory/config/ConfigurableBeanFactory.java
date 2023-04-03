@@ -19,14 +19,4 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
      * @return 返回当前注册的后置处理器数量
      */
     int getBeanPostProcessorCount();
-
-    /**
-     * @return 返回类加载器，如果系统类加载器不可访问返回 null
-     */
-    ClassLoader getBeanClassLoader();
-
-    /**
-     * 设置用于加载 Bean 对象的类加载器，默认值是线程上下文类加载器
-     */
-    void setBeanClassLoader(ClassLoader beanClassLoader);
 }

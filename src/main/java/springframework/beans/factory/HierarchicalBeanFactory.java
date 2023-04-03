@@ -7,8 +7,5 @@ package springframework.beans.factory;
  */
 public interface HierarchicalBeanFactory extends BeanFactory {
 
-    /**
-     * @return 返回 BeanFactory 的父类，允许为 null
-     */
-    BeanFactory getParentBeanFactory();
+
 }

@@ -10,7 +10,7 @@ public class UserDao {
         System.out.println("开始登录...");
     }
 
-    public void register(String name, int age) {
-        System.out.println("开始注册... name:" + name + " age:" + age);
+    public void register(String name, int age, int sex) {
+        System.out.println("开始注册... name:" + name + " age:" + age + " sex:" + sex);
     }
 }

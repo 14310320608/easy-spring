@@ -7,15 +7,21 @@ import org.junit.Test;
 
 import springframework.beans.PropertyValue;
 import springframework.beans.PropertyValues;
+import springframework.beans.factory.BeanFactory;
 import springframework.beans.factory.config.BeanDefinition;
 import springframework.beans.factory.config.BeanReference;
 import springframework.beans.factory.support.DefaultListableBeanFactory;
 import springframework.beans.factory.xml.XmlBeanDefinitionReader;
+import springframework.context.support.ClassPathXmlApplicationContext;
 import springframework.core.io.DefaultResourceLoader;
 import springframework.core.io.Resource;
 import springframework.test.bean.UserController;
 import springframework.test.bean.UserDao;
 import springframework.test.bean.UserService;
+import springframework.test.common.MyBean1FactoryPostProcessor;
+import springframework.test.common.MyBean1PostProcessor;
+import springframework.test.common.MyBean2FactoryPostProcessor;
+import springframework.test.common.MyBean2PostProcessor;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -113,7 +119,7 @@ public class ApiTest {
      * 通过 Bean 工厂创建对象
      * 实例化 Bean 对象，Bean 对象属性填充（依赖注入）
      */
-    private void doBeanSolution(DefaultListableBeanFactory beanFactory) {
+    private <T extends BeanFactory> void doBeanSolution(T beanFactory) {
         // 第一次获取带参数单例 Bean 对象
         UserController userController1 = (UserController)beanFactory.getBean("userController", "机器人1");
         userController1.login();
@@ -141,13 +147,50 @@ public class ApiTest {
         // 第一次获取单例 Bean 对象
         UserDao userDao1 = (UserDao)beanFactory.getBean("userDao");
         userDao1.login();
-        userDao1.register("机器人5", 102);
+        userDao1.register("机器人5", 102, 1);
         System.out.println(userDao1);
 
         // 第二次获取单例 Bean 对象
         UserDao userDao2 = (UserDao)beanFactory.getBean("userDao");
         userDao2.login();
-        userDao2.register("机器人6", 204);
+        userDao2.register("机器人6", 204, 0);
         System.out.println(userDao2);
+    }
+
+
+    @Test
+    public void testBeanFactoryPostProcessorAndBeanPostProcessor() {
+        // 1.初始化 BeanFactory
+        DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+
+        // 2. 加载 XML 配置文件，注册 BeanDefinition
+        XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactory, resourceLoader);
+        reader.loadBeanDefinitions("classpath:spring.xml");
+
+        // 3. 注册 BeanDefinition 后、实例化 Bean 对象之前，修改 BeanDefinition 的属性值
+        MyBean1FactoryPostProcessor bean1FactoryPostProcessor = new MyBean1FactoryPostProcessor();
+        bean1FactoryPostProcessor.postProcessBeanFactory(beanFactory);
+
+        MyBean2FactoryPostProcessor bean2FactoryPostProcessor = new MyBean2FactoryPostProcessor();
+        bean2FactoryPostProcessor.postProcessBeanFactory(beanFactory);
+
+        // 4. Bean 实例化与属性填充后、Bean 初始化前后，修改 Bean 属性信息
+        MyBean1PostProcessor bean1PostProcessor = new MyBean1PostProcessor();
+        beanFactory.addBeanPostProcessor(bean1PostProcessor);
+
+        MyBean2PostProcessor bean2PostProcessor = new MyBean2PostProcessor();
+        beanFactory.addBeanPostProcessor(bean2PostProcessor);
+
+        // 5. 获取 Bean 对象调用方法
+        doBeanSolution(beanFactory);
+    }
+
+    @Test
+    public void testContext() {
+        // 初始化 Spring 应用上下文
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring2.xml");
+
+        // 获取 Bean 对象调用方法
+        doBeanSolution(context);
     }
 }
