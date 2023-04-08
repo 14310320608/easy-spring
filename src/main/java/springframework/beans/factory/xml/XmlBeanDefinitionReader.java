@@ -21,7 +21,7 @@ import java.io.InputStream;
 
 /**
  * @author gusixue
- * @description 解析 XML 文件、获取 Bean 配置以及配置中的 id、name、class、value、ref，设置属性与注册 BeanDefinition
+ * @description 解析 XML 文件、获取 Bean 配置以及配置中的 id、name、class、value、ref 等，设置属性与注册 BeanDefinition
  * @date 2023/4/1
  */
 public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
@@ -97,7 +97,12 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
             String className = bean.getAttribute("class");
             Class<?> clazz = Class.forName(className);
 
+            String initMethod = bean.getAttribute("init-method");
+            String destroyMethod = bean.getAttribute("destroy-method");
+
             BeanDefinition beanDefinition = new BeanDefinition(clazz, new PropertyValues());
+            beanDefinition.setInitMethodName(initMethod);
+            beanDefinition.setDestroyMethodName(destroyMethod);
 
             // 填充属性
             for (int j = 0; j < bean.getChildNodes().getLength(); j++) {

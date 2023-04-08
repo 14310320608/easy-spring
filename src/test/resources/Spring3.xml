@@ -1,0 +1,18 @@
+<beans>
+    <bean id="userController" class="springframework.test.bean.UserController" init-method="afterPropertiesSet"
+          destroy-method="destroy">
+        <property name="userService" ref="userService"/>
+    </bean>
+
+    <bean name="userService" class="springframework.test.bean.UserService" init-method="initMethod">
+        <property name="age" value="26"/>
+        <property name="myUserDao" ref="userDao"/>
+    </bean>
+
+    <bean id="userDao" name="userDaoName"  class="springframework.test.bean.UserDao"  destroy-method="destroyMethod"/>
+
+    <bean id="myBean1FactoryPostProcessor" class="springframework.test.common.MyBean1FactoryPostProcessor"/>
+    <bean id="myBean2FactoryPostProcessor" class="springframework.test.common.MyBean2FactoryPostProcessor"/>
+    <bean id="myBean1PostProcessor" class="springframework.test.common.MyBean1PostProcessor"/>
+    <bean id="myBean2PostProcessor" class="springframework.test.common.MyBean2PostProcessor"/>
+</beans>

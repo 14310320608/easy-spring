@@ -43,6 +43,10 @@ public abstract class StringUtils {
         return (str == null || "".equals(str));
     }
 
+    public static boolean isNotEmpty(Object str) {
+        return !isEmpty(str);
+    }
+
     /**
      * Check that the given {@code String} is neither {@code null} nor of length 0.
      * <p>Note: this method returns {@code true} for a {@code String} that

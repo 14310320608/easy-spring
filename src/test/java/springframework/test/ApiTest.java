@@ -193,4 +193,14 @@ public class ApiTest {
         // 获取 Bean 对象调用方法
         doBeanSolution(context);
     }
+
+    @Test
+    public void testContextInitDestroy() {
+        // 初始化 Spring 应用上下文
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring3.xml");
+        context.registerShutdownHook();
+
+        // 获取 Bean 对象调用方法
+        doBeanSolution(context);
+    }
 }

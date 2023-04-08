@@ -19,4 +19,9 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
      * @return 返回当前注册的后置处理器数量
      */
     int getBeanPostProcessorCount();
+
+    /**
+     * 销毁单例对象
+     */
+    void destroySingletons();
 }

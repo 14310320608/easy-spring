@@ -1,11 +1,14 @@
 package springframework.test.bean;
 
+import springframework.beans.factory.DisposableBean;
+import springframework.beans.factory.InitializingBean;
+
 /**
  * 测试用控制器对象
  * @author gusixue
  * @date 2023/3/27
  */
-public class UserController {
+public class UserController implements InitializingBean, DisposableBean {
 
     private String name;
 
@@ -42,5 +45,15 @@ public class UserController {
 
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.out.println("UserController 执行 afterPropertiesSet 方法");
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        System.out.println("UserController 执行 destroy 方法");
     }
 }
